@@ -61,7 +61,7 @@ public class PlayerEcontroller : MonoBehaviour
             Invoke("RestartLevel", 1f);
         }
         
-        if (score >= 3 && hasKey == true && !hasOil)
+        if (score >= 10 && hasKey == true && !hasOil)
         {
             Debug.Log("Ganaste!");
             ShowNotification("Ganaste!");
@@ -75,7 +75,7 @@ public class PlayerEcontroller : MonoBehaviour
     }
     void UpdateTextScore()
     {
-        textScore.text = "Score: " + score;
+        textScore.text = "Score: " + score + "/10";
     }
 
     void ShowNotification(string message)
