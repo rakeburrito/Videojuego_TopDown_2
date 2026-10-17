@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: b95d132289811fa42961060068525c85
+guid: 3a896e57b1af15640b2f22a7c354b6ca
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5642492112998526068
-    second: sheet_tanks_0
-  - first:
-      213: -8321437272045551336
-    second: sheet_tanks_1
-  - first:
-      213: 6708041722993748036
-    second: sheet_tanks_2
+      213: -845886353738992385
+    second: platformPack_item007_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -119,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sheet_tanks_0
+      name: platformPack_item007_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 4
-        width: 867
-        height: 508
+        x: 14
+        y: 17
+        width: 37
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,52 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 47c683b7ea82e4e40800000000000000
-      internalID: 5642492112998526068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sheet_tanks_1
-      rect:
-        serializedVersion: 2
-        x: 477
-        y: 1
-        width: 175
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8118703d3e0548c80800000000000000
-      internalID: -8321437272045551336
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sheet_tanks_2
-      rect:
-        serializedVersion: 2
-        x: 650
-        y: 0
-        width: 215
-        height: 277
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 448aa850860c71d50800000000000000
-      internalID: 6708041722993748036
+      spriteID: ff4790dc7dec244f0800000000000000
+      internalID: -845886353738992385
       vertices: []
       indices: 
       edges: []
@@ -198,9 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sheet_tanks_0: 5642492112998526068
-      sheet_tanks_1: -8321437272045551336
-      sheet_tanks_2: 6708041722993748036
+      platformPack_item007_0: -845886353738992385
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
