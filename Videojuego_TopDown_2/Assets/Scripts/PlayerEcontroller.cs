@@ -85,7 +85,7 @@ public class PlayerEcontroller : MonoBehaviour
             Debug.Log("Game Over");
             ShowNotification("Game Over");
             
-            Invoke("RestartLevel", 1f);
+            Invoke("RestartLevel", 0.5f);
         }
         
         // Condición de victoria
