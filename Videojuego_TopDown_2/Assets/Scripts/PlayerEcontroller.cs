@@ -8,18 +8,36 @@ public class PlayerEcontroller : MonoBehaviour
     public int score = 0;
     public bool hasKey = false;
     public bool hasOil = false;
+    public GameObject storyPanel;
+    private bool isStoryActive = true;
     public TextMeshProUGUI textScore;
     public TextMeshProUGUI notificationText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (storyPanel != null)
+        {
+            storyPanel.SetActive(true); 
+        }
         UpdateTextScore();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isStoryActive)
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                if (storyPanel != null)
+                {
+                    storyPanel.SetActive(false);
+                }
+                isStoryActive = false;
+            }
+            return;
+        }
     
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
