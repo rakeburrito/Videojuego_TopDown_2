@@ -8,22 +8,25 @@ public class PlayerEcontroller : MonoBehaviour
     public int score = 0;
     public bool hasKey = false;
     public bool hasOil = false;
+    public int coinsCollected = 0;
+    public int diamondsCollected = 0;
+
     public GameObject storyPanel;
     private bool isStoryActive = true;
-    public TextMeshProUGUI textScore;
+    public TextMeshProUGUI textScore;     
+    public TextMeshProUGUI textCoins;      
+    public TextMeshProUGUI textDiamonds;   
     public TextMeshProUGUI notificationText;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (storyPanel != null)
         {
             storyPanel.SetActive(true); 
         }
-        UpdateTextScore();
+        UpdateUI();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isStoryActive)
@@ -43,24 +46,30 @@ public class PlayerEcontroller : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(moveHorizontal, moveVertical, 0);
         transform.Translate(direction * speed * Time.deltaTime);
-
     }
 
-    //Se ejecuta cuando se toque el collectable
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
         int pointsGained = CalculatePointsByTag(other.tag);
 
         if (pointsGained > 0)
         {
             score += pointsGained;
-            UpdateTextScore();
+
+            // Sumamos contadores según la etiqueta
+            if (other.CompareTag("Collectable_1"))
+            {
+                coinsCollected++;
+            }
+            else if (other.CompareTag("Collectable_2"))
+            {
+                diamondsCollected++;
+            }
+
+            UpdateUI(); // Refresca los textos en pantalla
             ShowNotification("+" + pointsGained + " points!");
             Destroy(other.gameObject);
-
         }
-
 
         if(other.CompareTag("Key"))
         {
@@ -68,8 +77,8 @@ public class PlayerEcontroller : MonoBehaviour
             Debug.Log("Tienes la llave");
             ShowNotification("Tienes la llave");
             Destroy(other.gameObject);
-            
         }
+
         if (other.CompareTag("Oil"))
         {
             hasOil = true;
@@ -79,21 +88,33 @@ public class PlayerEcontroller : MonoBehaviour
             Invoke("RestartLevel", 1f);
         }
         
-        if (score >= 10 && hasKey == true && !hasOil)
+        // Condición de victoria
+        if (coinsCollected >= 15 && diamondsCollected >= 5 && score >= 25 && hasKey == true && !hasOil)
         {
             Debug.Log("Ganaste!");
             ShowNotification("Ganaste!");
         }
-        
     }
+
     void RestartLevel()
     {
-        // Recarga la escena actual en ejecución
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    void UpdateTextScore()
+    void UpdateUI()
     {
-        textScore.text = "Score: " + score + "/10";
+        if (textScore != null)
+        {
+            textScore.text = "Score: " + score;
+        }
+        if (textCoins != null)
+        {
+            textCoins.text = "Coins: " + coinsCollected + "/15";
+        }
+        if (textDiamonds != null)
+        {
+            textDiamonds.text = "Diamonds: " + diamondsCollected + "/5";
+        }
+            
     }
 
     void ShowNotification(string message)
@@ -116,4 +137,4 @@ public class PlayerEcontroller : MonoBehaviour
             return 0;
         }
     }
-}   
+}
