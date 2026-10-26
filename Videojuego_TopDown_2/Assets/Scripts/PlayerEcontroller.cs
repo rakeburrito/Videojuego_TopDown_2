@@ -12,7 +12,13 @@ public class PlayerEcontroller : MonoBehaviour
     public int diamondsCollected = 0;
 
     public GameObject storyPanel;
+    public GameObject pausePanel;
+    public GameObject gameOverPanel;
+    public GameObject victoryPanel;
     private bool isStoryActive = true;
+    private bool isPaused = false;
+    private bool isGameOver = false;
+    private bool isVictory = false;
     public TextMeshProUGUI textScore;     
     public TextMeshProUGUI textCoins;      
     public TextMeshProUGUI textDiamonds;   
@@ -20,10 +26,16 @@ public class PlayerEcontroller : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
         if (storyPanel != null)
         {
             storyPanel.SetActive(true); 
         }
+
+        if (pausePanel != null) pausePanel.SetActive(false);
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+        if (victoryPanel != null) victoryPanel.SetActive(false);
+
         UpdateUI();
     }
 
@@ -31,6 +43,7 @@ public class PlayerEcontroller : MonoBehaviour
     {
         if (isStoryActive)
         {
+            Time.timeScale = 0f;
             if(Input.GetMouseButtonDown(0))
             {
                 if (storyPanel != null)
@@ -38,10 +51,20 @@ public class PlayerEcontroller : MonoBehaviour
                     storyPanel.SetActive(false);
                 }
                 isStoryActive = false;
+                Time.timeScale = 1f;
             }
             return;
         }
-    
+
+        if (isPaused)
+        {
+            Time.timeScale = 0f;
+        }    
+        else
+        {
+            Time.timeScale = 1f;
+        }
+
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(moveHorizontal, moveVertical, 0);
@@ -56,7 +79,6 @@ public class PlayerEcontroller : MonoBehaviour
         {
             score += pointsGained;
 
-            // Sumamos contadores según la etiqueta
             if (other.CompareTag("Collectable_1"))
             {
                 coinsCollected++;
