@@ -17,8 +17,6 @@ public class PlayerEcontroller : MonoBehaviour
     public GameObject victoryPanel;
     private bool isStoryActive = true;
     private bool isPaused = false;
-    private bool isGameOver = false;
-    private bool isVictory = false;
     public TextMeshProUGUI textScore;     
     public TextMeshProUGUI textCoins;      
     public TextMeshProUGUI textDiamonds;   
