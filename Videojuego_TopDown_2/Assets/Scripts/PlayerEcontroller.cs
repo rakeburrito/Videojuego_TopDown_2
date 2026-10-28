@@ -58,7 +58,7 @@ public class PlayerEcontroller : MonoBehaviour
         Vector3 direction = new Vector3(moveHorizontal, moveVertical, 0);
         transform.Translate(direction * speed * Time.deltaTime);
     }
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         int pointsGained = CalculatePointsByTag(other.tag);
@@ -108,7 +108,23 @@ public class PlayerEcontroller : MonoBehaviour
             
         }
     }
+    public void PauseGame()
+    {
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(true);
+        }
+        Time.timeScale = 0f;
+    }
 
+    public void ResumeGame()
+    {
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+        }
+        Time.timeScale = 1f;
+    }
     void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
