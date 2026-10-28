@@ -16,7 +16,6 @@ public class PlayerEcontroller : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject victoryPanel;
     private bool isStoryActive = true;
-    private bool isPaused = false;
     public TextMeshProUGUI textScore;     
     public TextMeshProUGUI textCoins;      
     public TextMeshProUGUI textDiamonds;   
@@ -53,16 +52,7 @@ public class PlayerEcontroller : MonoBehaviour
             }
             return;
         }
-
-        if (isPaused)
-        {
-            Time.timeScale = 0f;
-        }    
-        else
-        {
-            Time.timeScale = 1f;
-        }
-
+    
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(moveHorizontal, moveVertical, 0);
@@ -86,7 +76,7 @@ public class PlayerEcontroller : MonoBehaviour
                 diamondsCollected++;
             }
 
-            UpdateUI(); // Refresca los textos en pantalla
+            UpdateUI();
             ShowNotification("+" + pointsGained + " points!");
             Destroy(other.gameObject);
         }
@@ -102,17 +92,20 @@ public class PlayerEcontroller : MonoBehaviour
         if (other.CompareTag("Oil"))
         {
             hasOil = true;
+            Time.timeScale = 0f;
             Debug.Log("Game Over");
             ShowNotification("Game Over");
+            gameOverPanel.SetActive(true);
             
-            Invoke("RestartLevel", 0.5f);
         }
         
-        // Condición de victoria
         if (coinsCollected >= 15 && diamondsCollected >= 5 && score >= 25 && hasKey == true && !hasOil)
         {
             Debug.Log("Ganaste!");
+            Time.timeScale = 0f;
             ShowNotification("Ganaste!");
+            victoryPanel.SetActive(true);
+            
         }
     }
 
